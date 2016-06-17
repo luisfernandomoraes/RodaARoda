@@ -92,14 +92,23 @@ int main()
 
 			if (encontrou_letra)
 			{
+				acertou = 1;
 				for (int i = 0; i < qtd_letras; i++)
 				{
 					if (palavra[i] == letras_encontradas_p[i])
 						printf("%c", letras_encontradas_p[i]);
 					else
+					{
 						printf("*");
+						acertou = 0;
+					}
 				}
-				printf("\nAinda restam: %i chances\n", qtd_chutes);
+				if (acertou == 1)
+				{
+					printf("\nPARABENS! voce acertou!\n");
+				}
+				else
+					printf("\nAinda restam: %i chances\n", qtd_chutes);
 			}
 			else
 			{
@@ -109,15 +118,17 @@ int main()
 
 			qtd_chutes--; //usando operador de pos decremento
 		} while (acertou == 0 && qtd_chutes >= 0);
-		printf("Game Over. Jogar novamente? S/N: ");
+		if (qtd_chutes <= 0)
+			printf("Game Over.\n");
+		printf("Jogar novamente? S/N:");
 		char resposta;
 	ler2:
 		resposta = getchar();
 		if (resposta == 'n' || resposta == 'N')
 			exit(0);
-		else if (resposta == '\n')
+		else if (resposta == '\n' || resposta == ' ')
 			goto ler2;
-		else if (resposta != 'S' || resposta != 's')
+		else if (resposta != 'S' && resposta != 's')
 		{
 			printf("Opcao incorreta.  Jogar novamente? S/N: ");
 			goto ler2;
