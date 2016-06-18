@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-//#include <string.h>
+#include <string.h>
 #define TRUE 1
 
 int main()
@@ -11,24 +11,24 @@ int main()
 	{
 		{"abelha","mel"},
 		{ "goleiro","futebol" },
-		{ "teste","teste tema" },
-		{ "teste","teste tema" },
-		{ "teste","teste tema" },
-		{ "teste","teste tema" },
-		{ "teste","teste tema" },
-		{ "teste","teste tema" },
-		{ "teste","teste tema" },
-		{ "teste","teste tema" },
-		{ "teste","teste tema" },
-		{ "teste","teste tema" },
-		{ "teste","teste tema" },
-		{ "teste","teste tema" },
-		{ "teste","teste tema" },
-		{ "teste","teste tema" },
-		{ "teste","teste tema" },
-		{ "teste","teste tema" },
-		{ "teste","teste tema" },
-		{ "teste","teste tema" },
+		{ "Quadro","Aula" },
+		{ "teste","teste" },
+		{ "teste","teste" },
+		{ "teste","teste" },
+		{ "teste","teste" },
+		{ "teste","teste" },
+		{ "teste","teste" },
+		{ "teste","teste" },
+		{ "teste","teste" },
+		{ "teste","teste" },
+		{ "teste","teste" },
+		{ "teste","teste" },
+		{ "teste","teste" },
+		{ "teste","teste" },
+		{ "teste","teste" },
+		{ "teste","teste" },
+		{ "teste","teste" },
+		{ "teste","teste" },
 	};
 
 	/* Inicio do laço principal do jogo */
@@ -39,19 +39,26 @@ int main()
 		srand(time(&t));
 		int index = rand() % 20;
 
-		index = 0;
-		char *palavra = palavras[index][0];
-		char *tema = palavras[index][1];
+		//index = 0;
+		//index = posicao da linha sorteada
+		char *palavra = palavras[index][0]; // linha na posicao [0] = palavra sorteada
+		char *tema = palavras[index][1]; // linha na posicao [1] = tema sorteado
 
 		int index_qtdletras = 0;
-		while (palavra[index_qtdletras] != '\0') ++index_qtdletras; //calculando a quantidade de letras da palavra.
-		int qtd_letras = index_qtdletras; //strlen(palavra); 
+		/*while (palavra[index_qtdletras] != '\0')
+			++index_qtdletras*/; //calculando a quantidade de letras da palavra.
+		int qtd_letras = strlen(palavra);//index_qtdletras; // 
 		int qtd_chutes = qtd_letras * 2;
-		char *letras_encontradas_p = (char*)malloc(sizeof(char) * qtd_letras);
+		// malloc = "memory allocation" vai informar ao programa a quantidade de memoria que a variavel vai ocupar.
+		//(char* ) = conversao do tipo
+		//sizeof(char) = retorna o tamanho do tipo 'char'
+		char *letras_encontradas_p = (char*)malloc(sizeof(char) * qtd_letras);//
 		int qtd_letras_econtradas = 0;
 
 		printf("O tema e: --- %s ----\n", tema);
-		for (int i = 0; i < qtd_letras; i++) printf("*");
+		for (int i = 0; i < qtd_letras; i++) 
+			printf("*");
+
 		printf("\n");
 		printf("=>\n");
 
@@ -117,7 +124,7 @@ int main()
 			}
 
 			qtd_chutes--; //usando operador de pos decremento
-		} while (acertou == 0 && qtd_chutes >= 0);
+		} while (acertou == 0 && qtd_chutes >= 0); 
 		if (qtd_chutes <= 0)
 			printf("Game Over.\n");
 		printf("Jogar novamente? S/N:");
